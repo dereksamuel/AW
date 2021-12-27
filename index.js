@@ -7,6 +7,6 @@ Promise.all([navigator.permissions.query({ name: "accelerometer" }),
       sensor.start();
       alert(sensor);
     } else {
-      console.log("No permissions to use AbsoluteOrientationSensor.");
+      alert("No permissions to use AbsoluteOrientationSensor.");
     }
 });
