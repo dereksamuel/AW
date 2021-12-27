@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Augmented World</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <!-- <a-scene embedded arjs>
+    <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+    <a-camera gps-camera rotation-reader></a-camera>
+  </a-scene> -->
+  <div>
+    <div class="content"></div>
+  </div>
+  <script>
+    const $content = document.querySelector(".content");
+    const earthMeridian = 111111.11111111111; // in meters
+
+    window.objective = {
+      lat: 4.579513146143272 * earthMeridian,
+      lon: -74.12104574839235 * earthMeridian,
+    };
+
+    function initialize() {
+      const timer = setInterval(() => {
+        getLocation();
+      }, 100);
+      // 1 = 111111 m
+    }
+
+    function getLocation() {
+      navigator.geolocation.getCurrentPosition((position) => {
+        window.myLocation = {
+          lat: position.coords.latitude * earthMeridian,
+          lon: position.coords.longitude * earthMeridian,
+        };
+
+        $content.innerHTML = `
+          <p>Lat: ${Math.floor(myLocation.lat - objective.lat)}m</p>
+          <p>Lon: ${Math.floor(myLocation.lon - objective.lon)}m</p>
+        `;
+      }, console.error);
+    }
+
+    window.onload = initialize();
+  </script>
+</body>
+</html>
