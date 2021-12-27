@@ -8,14 +8,12 @@ window.objective = {
 };
 
 function initialize() {
-  const timer = setInterval(() => {
-    getLocation();
-  }, 100);
+  getLocation();
   // 1 = 111111 m
 }
 
 function getLocation() {
-  navigator.geolocation.getCurrentPosition((position) => {
+  navigator.geolocation.watchPosition((position) => {
     window.myLocation = {
       lat: position.coords.latitude,
       lon: position.coords.longitude,
