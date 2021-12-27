@@ -20,44 +20,9 @@
   </style>
 </head>
 <body>
-  <!-- <a-scene embedded arjs>
-    <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+  <a-scene embedded arjs>
     <a-camera gps-camera rotation-reader></a-camera>
-  </a-scene> -->
-  <div>
-    <div class="content"></div>
-  </div>
-  <script>
-    const $content = document.querySelector(".content");
-    const earthMeridian = 111111.11111111111; // in meters
-
-    window.objective = {
-      lat: 4.579513146143272 * earthMeridian,
-      lon: -74.12104574839235 * earthMeridian,
-    };
-
-    function initialize() {
-      const timer = setInterval(() => {
-        getLocation();
-      }, 100);
-      // 1 = 111111 m
-    }
-
-    function getLocation() {
-      navigator.geolocation.getCurrentPosition((position) => {
-        window.myLocation = {
-          lat: position.coords.latitude * earthMeridian,
-          lon: position.coords.longitude * earthMeridian,
-        };
-
-        $content.innerHTML = `
-          <p>Lat: ${Math.floor(myLocation.lat - objective.lat)}m</p>
-          <p>Lon: ${Math.floor(myLocation.lon - objective.lon)}m</p>
-        `;
-      }, console.error);
-    }
-
-    window.onload = initialize();
-  </script>
+  </a-scene>
+  <script type="text/javascript" src="./index.js" async></script>
 </body>
 </html>
