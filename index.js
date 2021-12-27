@@ -32,8 +32,8 @@ function getLocation() {
 
     // $scene.appendChild($aBox);
     $content.innerHTML = `
-      <p>Lat: ${(position.coords.latitude - objective.lat) * 1000}m</p>
-      <p>Lon: ${(position.coords.longitude - objective.lon) * 1000}m</p>
+      <p>Lat: ${Math.hypot(myLocation.lat, objective.lat)}</p>
+      <p>Lon: ${Math.hypot(myLocation.lon, objective.lon)}m</p>
     `;
   }, console.error);
 }
