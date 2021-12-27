@@ -8,9 +8,9 @@ window.objective = {
 };
 
 function initialize() {
-  // const timer = setInterval(() => {
+  const timer = setInterval(() => {
     getLocation();
-  // }, 100);
+  }, 100);
   // 1 = 111111 m
 }
 
